@@ -116,12 +116,18 @@
             <p>Admin Portal IIP</p>
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="active">❖ Kebanggaan IIP</a></li>
-            <li><a href="#">📝 Berita Terkini</a></li>
+            <li><a href="/admin" class="active">❖ Kebanggaan IIP</a></li>
+            <li><a href="/admin/berita">📝 Berita Terkini</a></li>
             <li><a href="#">⚙️ Pengaturan Web</a></li>
         </ul>
         <div class="back-to-web">
             <a href="/home">← Kembali ke Website</a>
+        </div>
+        <div style="padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <form action="/logout" method="POST">
+                @csrf
+                <button type="submit" style="background: rgba(255,0,0,0.3); color: white; width: 100%; padding: 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; font-weight: bold; cursor: pointer;">Log Out (Keluar)</button>
+            </form>
         </div>
     </aside>
 
