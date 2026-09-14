@@ -51,3 +51,7 @@ Route::get('/repositori', function () { return view('menu-repositori'); });
 Route::get('/alumni', function () { return view('menu-alumni'); });
 Route::get('/komunitas', function () { return view('menu-komunitas'); });
 Route::get('/resource-hub', function () { return view('menu-resource'); });
+Route::get('/semua-berita', [HomeController::class, 'semuaBerita']); 
+
+// Tambahkan rute Search Global ini:
+Route::get('/search', [HomeController::class, 'search']);
