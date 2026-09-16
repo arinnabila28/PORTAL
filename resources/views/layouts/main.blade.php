@@ -149,5 +149,102 @@
         });
     </script>
     @yield('custom-js')
+
+    <style>
+        /* Mendaftarkan font secara global khusus untuk Footer di semua halaman */
+        @font-face {
+            font-family: 'MonospaceTypewriter';
+            src: url("{{ asset('fonts/MonospaceTypewriter_2.ttf') }}");
+            font-display: swap;
+        }
+
+        .main-footer {
+            width: 100%;
+            padding: 40px 20px 20px 20px;
+            /* Efek gradien transparan agar menyatu dengan background halaman */
+            background: linear-gradient(to bottom, transparent, rgba(255, 179, 138, 0.8));
+            color: #fff;
+            margin-top: auto; 
+            box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .footer-column {
+            flex: 1;
+        }
+
+        .footer-column p {
+            /* Memaksa penggunaan font MonospaceTypewriter_2 */
+            font-family: 'MonospaceTypewriter', monospace !important;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin: 5px 0;
+            letter-spacing: 0.5px;
+            /* Efek outline hitam tipis seperti di desainmu */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), -1px -1px 0 rgba(0,0,0,0.1);
+        }
+
+        .footer-copyright {
+            max-width: 1200px;
+            margin: 40px auto 0 auto;
+            text-align: left;
+            font-family: 'MonospaceTypewriter', monospace !important;
+            font-size: 1rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsivitas: Berubah jadi 1 kolom saat dibuka di HP */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+    </style>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <!-- Kolom 1: Prodi -->
+            <div class="footer-column">
+                <p>Program Studi Ilmu Informasi dan Perpustakaan</p>
+                <p>Departemen Informasi dan Perpustakaan</p>
+                <p>Fakultas Ilmu Sosial dan Ilmu Politik</p>
+                <p>Universitas Airlangga</p>
+            </div>
+            
+            <!-- Kolom 2: Alamat -->
+            <div class="footer-column">
+                <p>Gedung Soetandyo</p>
+                <p>Fakultas Ilmu Sosial dan Ilmu Politik</p>
+                <p>Kampus B Universitas Airlangga</p>
+                <p>Jl. Dharmawangsa Dalam, Kecamatan Gubeng,</p>
+                <p>Kota Surabaya, Jawa Timur 60286, Indonesia</p>
+            </div>
+            
+            <!-- Kolom 3: Kontak -->
+            <div class="footer-column">
+                <p>Kontak :</p>
+                <p>Admin 1 (chat only) :</p>
+                <p>+6285712763664</p>
+                <br>
+                <p>Admin 2 (chat only) :</p>
+                <p>+6282226290003</p>
+            </div>
+        </div>
+        
+        <div class="footer-copyright">
+            &copy;AyinEyen26
+        </div>
+    </footer>
 </body>
 </html>
