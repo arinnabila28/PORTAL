@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController; 
 use App\Http\Controllers\AdminBeritaController;
 use App\Models\Berita;
+use App\Http\Controllers\PersebaranController;
+use App\Http\Controllers\ToolkitController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,6 +33,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/berita', [AdminBeritaController::class, 'index']);
     Route::post('/admin/berita/store', [AdminBeritaController::class, 'store']);
     Route::delete('/admin/berita/delete/{id}', [AdminBeritaController::class, 'destroy']);
+    Route::get('/admin/berita/edit/{id}', [App\Http\Controllers\AdminBeritaController::class, 'edit']);
+    Route::put('/admin/berita/update/{id}', [App\Http\Controllers\AdminBeritaController::class, 'update']);
+    Route::get('/admin/persebaran', [PersebaranController::class, 'adminIndex']);
+    Route::post('/admin/persebaran', [PersebaranController::class, 'store']);
+    Route::delete('/admin/persebaran/{id}', [PersebaranController::class, 'destroy']);
+    Route::get('/admin/persebaran/edit/{id}', [App\Http\Controllers\PersebaranController::class, 'edit']);
+    Route::put('/admin/persebaran/update/{id}', [App\Http\Controllers\PersebaranController::class, 'update']);
+    Route::get('/admin/toolkit', [ToolkitController::class, 'adminIndex']);
+    Route::post('/admin/toolkit', [ToolkitController::class, 'store']);
+    Route::delete('/admin/toolkit/{id}', [ToolkitController::class, 'destroy']);
+    Route::get('/admin/toolkit/edit/{id}', [App\Http\Controllers\ToolkitController::class, 'edit']);
+    Route::put('/admin/toolkit/update/{id}', [App\Http\Controllers\ToolkitController::class, 'update']);
 });
 
 // Rute Halaman Detail Berita (Publik)
@@ -55,3 +69,7 @@ Route::get('/semua-berita', [HomeController::class, 'semuaBerita']);
 
 // Tambahkan rute Search Global ini:
 Route::get('/search', [HomeController::class, 'search']);
+
+// Route User 
+Route::get('/persebaran-alumni', [PersebaranController::class, 'index']);
+Route::get('/student-toolkit', [ToolkitController::class, 'index']);

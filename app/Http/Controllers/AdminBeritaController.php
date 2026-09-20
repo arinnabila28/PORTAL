@@ -7,7 +7,7 @@ class AdminBeritaController extends Controller
 {
     public function index() {
         $berita = Berita::latest()->get();
-        return view('admin-berita', compact('berita'));
+        return view('admin.berita', compact('berita'));
     }
 
     public function store(Request $request) {
@@ -31,5 +31,29 @@ class AdminBeritaController extends Controller
     {
         $berita = \App\Models\Berita::findOrFail($id);
         return view('berita-detail', compact('berita'));
+    }
+
+    public function edit($id)
+    {
+        $berita = Berita::findOrFail($id);
+        return view('admin.berita-edit', compact('berita'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $b = Berita::findOrFail($id);
+        $b->judul = $request->judul;
+        $b->cuplikan = $request->cuplikan;
+        $b->isi = $request->isi;
+        
+        // Cek jika admin mengupload gambar baru
+        if ($request->hasFile('gambar')) {
+            $namaGambar = time().'.'.$request->gambar->extension();  
+            $request->gambar->move(public_path('images'), $namaGambar);
+            $b->gambar = $namaGambar;
+        }
+        $b->save();
+
+        return redirect('/admin/berita')->with('success', 'Berita berhasil diperbarui!');
     }
 }

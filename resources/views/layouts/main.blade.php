@@ -124,9 +124,9 @@
             <a href="/kurikulum" class="menu-item {{ request()->is('kurikulum') ? 'active' : '' }}"><span>📚</span> 2. Akademik & Kurikulum</a>
             <a href="/lab-klasifikasi" class="menu-item {{ request()->is('lab-klasifikasi') ? 'active' : '' }}"><span>🔬</span> 3. Lab Klasifikasi</a>
             <a href="/repositori" class="menu-item {{ request()->is('repositori') ? 'active' : '' }}"><span>📂</span> 4. Repositori & Publikasi</a>
-            <a href="/alumni" class="menu-item {{ request()->is('alumni') ? 'active' : '' }}"><span>🎓</span> 5. Jejak Alumni & Karier</a>
+            <a href="/persebaran-alumni" class="menu-item {{ request()->is('persebaran-alumni') ? 'active' : '' }}"><span>🎓</span> 5. Persebaran Alumni</a>
             <a href="/komunitas" class="menu-item {{ request()->is('komunitas') ? 'active' : '' }}"><span>💬</span> 6. Komunitas & Forum</a>
-            <a href="/resource-hub" class="menu-item {{ request()->is('resource-hub') ? 'active' : '' }}"><span>🛠️</span> 7. Resource Hub</a>
+            <a href="/student-toolkit" class="menu-item {{ request()->is('student-toolkit') ? 'active' : '' }}"><span>🛠️</span> 7. Student Toolkit</a>
         </div>
     </aside>
 

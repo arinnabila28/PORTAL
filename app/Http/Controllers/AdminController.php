@@ -10,7 +10,7 @@ class AdminController extends Controller
     public function index()
     {
         $tokoh = Kebanggaan::latest()->get(); 
-        return view('admin', compact('tokoh'));
+        return view('admin.index', compact('tokoh'));
     }
 
     public function store(Request $request)
