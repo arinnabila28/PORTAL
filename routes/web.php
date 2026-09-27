@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminBeritaController;
 use App\Models\Berita;
 use App\Http\Controllers\PersebaranController;
 use App\Http\Controllers\ToolkitController;
+use App\Http\Controllers\InformasiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,6 +46,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/toolkit/{id}', [ToolkitController::class, 'destroy']);
     Route::get('/admin/toolkit/edit/{id}', [App\Http\Controllers\ToolkitController::class, 'edit']);
     Route::put('/admin/toolkit/update/{id}', [App\Http\Controllers\ToolkitController::class, 'update']);
+    Route::get('/informasi', [InformasiController::class, 'index']);
+
+Route::get('/admin/informasi', [InformasiController::class, 'adminIndex']);
+Route::post('/admin/informasi', [InformasiController::class, 'store']);
+Route::get('/admin/informasi/edit/{id}', [InformasiController::class, 'edit']);
+Route::put('/admin/informasi/update/{id}', [InformasiController::class, 'update']);
+Route::delete('/admin/informasi/{id}', [InformasiController::class, 'destroy']);
 });
 
 // Rute Halaman Detail Berita (Publik)

@@ -9,11 +9,12 @@
         body { margin: 0; padding: 0; font-family: 'Open Sauce', sans-serif; display: flex; height: 100vh; background-color: #f4f6f9; color: #333; }
         
         /* Sidebar */
-        .sidebar { width: 260px; background: linear-gradient(to bottom, #8a1c14, #e24933); color: #fdf6ec; display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,0.1); z-index: 10; }
+        .sidebar { width: 260px; background: linear-gradient(to bottom, #8a1c14, #e24933); color: #fdf6ec; display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,0.1); z-index: 1000; min-height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto; height: 100vh; }
         .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .sidebar-header h2 { margin: 0; font-family: 'Arial Black', sans-serif; letter-spacing: 2px; font-size: 1.8rem; }
         .sidebar-header p { margin: 5px 0 0 0; font-size: 0.85rem; opacity: 0.8; }
-        .nav-links { list-style: none; padding: 20px 0; margin: 0; flex-grow: 1; }
+        .sidebar-bottom { padding: 20px; margin-top: auto}
+        .nav-links { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
         .nav-links li { margin-bottom: 5px; }
         .nav-links a { display: block; color: #fdf6ec; text-decoration: none; padding: 15px 25px; font-weight: bold; transition: all 0.3s; border-left: 4px solid transparent; }
         .nav-links a:hover { background: rgba(255, 255, 255, 0.1); }
@@ -25,7 +26,7 @@
         .btn-logout:hover { background: #c0392b; transform: translateY(-2px); }
 
         /* Konten Utama */
-        .main-content { flex-grow: 1; padding: 40px; overflow-y: auto; }
+        .main-content { flex-grow: 1; padding: 40px; overflow-y: auto; margin-left: 260px; width: calc(100% - 260px); min-height: 100vh;}
         .page-title { margin-top: 0; font-size: 2rem; color: #8a1c14; margin-bottom: 30px; }
         .alert-success { background-color: #d4edda; color: #155724; padding: 15px 20px; border-radius: 8px; border: 1px solid #c3e6cb; margin-bottom: 25px; font-weight: bold; }
         
@@ -63,6 +64,7 @@
             <li><a href="/admin/berita" class="{{ Request::is('admin/berita') ? 'active' : '' }}">📝 Berita Terkini</a></li>
             <li><a href="/admin/persebaran" class="{{ Request::is('admin/persebaran') ? 'active' : '' }}">📍 Persebaran Alumni</a></li>
             <li><a href="/admin/toolkit" class="{{ Request::is('admin/toolkit') ? 'active' : '' }}">🛠️ Student Toolkit</a></li>
+            <li><a href="/admin/informasi" class="{{ Request::is('admin/informasi*') ? 'active' : '' }}">📢 Informasi Seputar IIP</a></li>
             <li><a href="#">⚙️ Pengaturan Web</a></li>
         </ul>
         <div class="back-to-web">

@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'NODE.US - Portal Akademik')</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sauce&display=swap" rel="stylesheet">
+    <!-- Import Font Fredoka dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Logika: Terapkan font ke semua halaman KECUALI url '/' atau '/home' -->
+    @if(!Request::is('/') && !Request::is('home'))
+    <style>
+        body, p, span, div, a, li, h1, h2, h3, h4, h5, h6,
+        .menu-item, .footer-column p, .footer-copyright, .fitur-unggula-desc, .berita-desc, .berita-tytle {
+            font-family: 'Fredoka', sans-serif !important;
+        }
+    </style>
+    @endif
     <style>
         body {
             margin: 0;
@@ -94,10 +105,8 @@
             box-sizing: border-box; /* Kunci agar width 100% tidak tergeser padding */
             width: 100%;
         }
-
-        /* Area CSS Khusus Halaman */
-        @yield('custom-css')
     </style>
+    @yield('custom-css')
 </head>
 <body>
 
@@ -125,7 +134,7 @@
             <a href="/lab-klasifikasi" class="menu-item {{ request()->is('lab-klasifikasi') ? 'active' : '' }}"><span>🔬</span> 3. Lab Klasifikasi</a>
             <a href="/repositori" class="menu-item {{ request()->is('repositori') ? 'active' : '' }}"><span>📂</span> 4. Repositori & Publikasi</a>
             <a href="/persebaran-alumni" class="menu-item {{ request()->is('persebaran-alumni') ? 'active' : '' }}"><span>🎓</span> 5. Persebaran Alumni</a>
-            <a href="/komunitas" class="menu-item {{ request()->is('komunitas') ? 'active' : '' }}"><span>💬</span> 6. Komunitas & Forum</a>
+            <a href="/informasi" class="menu-item {{ request()->is('informasi') ? 'active' : '' }}"><span>💬</span> 6. Informasi Seputar IIP</a>
             <a href="/student-toolkit" class="menu-item {{ request()->is('student-toolkit') ? 'active' : '' }}"><span>🛠️</span> 7. Student Toolkit</a>
         </div>
     </aside>

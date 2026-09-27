@@ -37,7 +37,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $tokoh = Kebanggaan::findOrFail($id);
-        return view('admin-edit', compact('tokoh'));
+        return view('admin.edit-kebanggaan', compact('tokoh'));
     }
 
     // 2. Memproses perubahan data (Update)
