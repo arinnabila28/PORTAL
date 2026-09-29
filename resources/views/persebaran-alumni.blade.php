@@ -9,14 +9,14 @@
         max-width: 1100px;
         margin: 20px auto 60px auto; 
         padding: 0 20px;
-        text-align: center;
+        text-align: left;
     }
 
     /* === JUDUL UTAMA === */
     .persebaran-title {
         font-family: 'Fredoka', sans-serif !important;
         font-weight: 700;
-        font-size: 3.5rem;
+        font-size: 2.9rem;
         color: #fdf6ec; 
         margin-top: 0;
         margin-bottom: 20px;
