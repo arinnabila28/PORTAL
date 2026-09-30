@@ -82,35 +82,10 @@
     </div>
 
     <!-- SCRIPT KALKULATOR DINAMIS -->
+    <!-- SCRIPT KALKULATOR DINAMIS -->
     <script>
-        const ddcDatabase = [
-            {
-                subject: "Kamus Kedokteran",
-                number: "610.3",
-                details: "<strong>Index :</strong> Medicine (610)<br><strong>Schedule :</strong> 610 Medicine and Health<br><strong>Ada perintah :</strong> .1 – .9 Standard Subdivision<br><br><strong>Index Tabel 1 :</strong> -03 Kamus, concordencies, Ensiklopedia<br><strong>Hasil :</strong> 610 + .3 = 610.3 (Kamus Kedokteran)"
-            },
-            {
-                subject: "Sejarah Indonesia",
-                number: "959.8",
-                details: "<strong>Index :</strong> History of Southeast Asia (959)<br><strong>Schedule :</strong> 959.8 Indonesia<br><strong>Penjelasan :</strong> Nomor dasar 959 (Sejarah Asia Tenggara) ditambahkan angka 8 yang melambangkan wilayah spesifik Indonesia.<br><strong>Hasil :</strong> 959.8 (Sejarah Indonesia)"
-            },
-            {
-                subject: "Psikologi Anak",
-                number: "155.4",
-                details: "<strong>Index :</strong> Psychology (150)<br><strong>Schedule :</strong> 155 Differential and developmental psychology<br><strong>Ada perintah :</strong> .4 Child psychology<br><br><strong>Hasil :</strong> 155.4 (Psikologi Anak)"
-            },
-            {
-                subject: "Jurnal Ilmu Perpustakaan",
-                number: "020.5",
-                details: "<strong>Index :</strong> Library and information sciences (020)<br><strong>Schedule :</strong> 020 Library science<br><strong>Ada perintah :</strong> Tambahkan Standard Subdivision dari Tabel 1.<br><br><strong>Index Tabel 1 :</strong> -05 Serial publications (Jurnal/Majalah)<br><strong>Hasil :</strong> 020 + .5 = 020.5 (Jurnal Ilmu Perpustakaan)"
-            },
-            {
-                subject: "Filsafat Pendidikan",
-                number: "370.1",
-                details: "<strong>Index :</strong> Education (370)<br><strong>Schedule :</strong> 370 Education<br><strong>Ada perintah :</strong> .1 Philosophy and theory of education<br><br><strong>Hasil :</strong> 370.1 (Filsafat Pendidikan)"
-            }
-        ];
-
+        // Mengambil data dari database Laravel (Controller)
+        const ddcDatabase = {!! json_encode($ddc_data) !!};
         const subjectsList = ddcDatabase.map(item => item.subject);
 
         function autocomplete(inp, arr) {
@@ -131,11 +106,17 @@
                 
                 let foundMatch = false;
                 for (i = 0; i < arr.length; i++) {
-                    if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    // PERBAIKAN: Menggunakan includes() agar pencarian lebih fleksibel (bisa mencari kata di tengah kalimat)
+                    if (arr[i].toLowerCase().includes(val.toLowerCase())) {
                         foundMatch = true;
                         b = document.createElement("DIV");
-                        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                        b.innerHTML += arr[i].substr(val.length);
+                        
+                        // Menyorot (bold) teks yang cocok
+                        let matchIndex = arr[i].toLowerCase().indexOf(val.toLowerCase());
+                        b.innerHTML = arr[i].substr(0, matchIndex);
+                        b.innerHTML += "<strong>" + arr[i].substr(matchIndex, val.length) + "</strong>";
+                        b.innerHTML += arr[i].substr(matchIndex + val.length);
+                        
                         b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                         b.addEventListener("click", function(e) {
                             inp.value = this.getElementsByTagName("input")[0].value;
@@ -147,7 +128,7 @@
                 }
                 if(!foundMatch) {
                      b = document.createElement("DIV");
-                     b.innerHTML = "<em>Subjek belum ada di database simulasi...</em>";
+                     b.innerHTML = "<em>Subjek belum ada di database...</em>";
                      b.style.pointerEvents = "none";
                      a.appendChild(b);
                 }
@@ -156,16 +137,20 @@
             inp.addEventListener("keydown", function(e) {
                 let x = document.getElementById(this.id + "autocomplete-list");
                 if (x) x = x.getElementsByTagName("div");
-                if (e.keyCode == 40) {
+                if (e.keyCode == 40) { // Tombol Panah Bawah
                     currentFocus++;
                     addActive(x);
-                } else if (e.keyCode == 38) {
+                } else if (e.keyCode == 38) { // Tombol Panah Atas
                     currentFocus--;
                     addActive(x);
-                } else if (e.keyCode == 13) {
+                } else if (e.keyCode == 13) { // Tombol ENTER
                     e.preventDefault();
                     if (currentFocus > -1) {
                         if (x) x[currentFocus].click();
+                    } else {
+                        // PERBAIKAN: Jika langsung tekan Enter tanpa memilih dropdown, langsung eksekusi pencarian
+                        closeAllLists();
+                        displayResult(inp.value);
                     }
                 }
             });
@@ -196,7 +181,9 @@
         }
 
         function displayResult(selectedSubject) {
-            const data = ddcDatabase.find(item => item.subject === selectedSubject);
+            // PERBAIKAN: Mengubah pencarian menjadi case-insensitive (mengabaikan huruf besar/kecil)
+            const data = ddcDatabase.find(item => item.subject.toLowerCase() === selectedSubject.toLowerCase());
+            
             if(data) {
                 document.getElementById('emptyState').style.display = 'none';
                 document.getElementById('resultContainer').style.display = 'block';
@@ -205,6 +192,9 @@
                 let detailBox = document.getElementById('resDetails');
                 detailBox.innerHTML = data.details;
                 detailBox.style.display = 'block';
+            } else {
+                alert('Subjek "' + selectedSubject + '" tidak ditemukan di database kalkulator.');
+                resetResult();
             }
         }
 

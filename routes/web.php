@@ -12,6 +12,7 @@ use App\Models\Berita;
 use App\Http\Controllers\PersebaranController;
 use App\Http\Controllers\ToolkitController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\KalkulatorDdcController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,6 +58,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/informasi/edit/{id}', [InformasiController::class, 'edit']);
     Route::put('/admin/informasi/update/{id}', [InformasiController::class, 'update']);
     Route::delete('/admin/informasi/{id}', [InformasiController::class, 'destroy']);
+
+   Route::get('/admin/kalkulator-ddc', [KalkulatorDdcController::class, 'indexAdmin']);
+Route::post('/admin/kalkulator-ddc', [KalkulatorDdcController::class, 'store']);
+Route::delete('/admin/kalkulator-ddc/{id}', [KalkulatorDdcController::class, 'destroy']);
 });
 
 // --- RUTE PUBLIK & PENGGUNA ---
@@ -73,7 +78,6 @@ Route::get('/informasi', [InformasiController::class, 'index']);
 
 // Sidebar Placeholder (Menu-menu kosong dari kamu)
 Route::get('/alumni', function () { return view('menu-alumni'); });
-Route::get('/komunitas', function () { return view('menu-komunitas'); });
 Route::get('/resource-hub', function () { return view('menu-resource'); });
 
 // --- RUTE FITUR TAMBAHAN DARI TEMAN ---
@@ -86,7 +90,7 @@ Route::get('/peta-kurikulum', function () { return view('peta-kurikulum'); });
 // 2. Lab Klasifikasi (DDC)
 Route::get('/lab-klasifikasi', function () { return view('lab-klasifikasi'); }); // Merubah 'menu-lab' menjadi 'lab-klasifikasi' sesuai view teman
 Route::get('/pengenalan-ddc', function () { return view('pengenalan-ddc'); });
-Route::get('/calculator-ddc', function () { return view('calculator-ddc'); });
+Route::get('/calculator-ddc', [KalkulatorDdcController::class, 'indexUser']);
 
 // 3. Repositori Karya IIP (Menggantikan /repositori yang kosong)
 Route::get('/repositori', function (Request $request) {

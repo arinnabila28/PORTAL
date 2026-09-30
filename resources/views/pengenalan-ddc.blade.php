@@ -45,7 +45,7 @@
             
             <!-- Tombol Folder Google Drive DDC & Akses e-DDC -->
             <div class="action-container">
-                <a href="https://drive.google.com/drive/folders/1noofrFhHIMZ-xkvgqiqRD3ketFj6-cDw?usp=drive_link" target="_blank" class="btn-action download">📁 DDC 2023</a>
+                <a href="https://drive.google.com/drive/folders/1noofrFhHIMZ-xkvgqiqRD3ketFj6-cDw?usp=drive_link" target="_blank" class="btn-action download">📁 DDC 23</a>
                 <a href="https://www.oclc.org/en/dewey.html" target="_blank" class="btn-action">🌐 Akses e-DDC / WebDewey ↗</a>
             </div>
         </div>

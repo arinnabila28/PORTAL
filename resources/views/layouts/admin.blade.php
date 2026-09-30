@@ -36,8 +36,8 @@
         .card h3 { margin-top: 0; margin-bottom: 20px; color: #333; }
         .form-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
-        input[type="text"], input[type="file"], input[type="number"], textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-family: inherit; background-color: #f9f9f9; resize: vertical;}
-        input[type="text"]:focus, textarea:focus, input[type="number"]:focus { outline: none; border-color: #e24933; background-color: #fff; }
+        input[type="text"], input[type="date"], input[type="url"], input[type="file"], input[type="number"], textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-family: inherit; background-color: #f9f9f9; resize: vertical;}
+        input[type="text"]:focus, input[type="date"]:focus, input[type="url"]:focus, textarea:focus, input[type="number"]:focus { outline: none; border-color: #e24933; background-color: #fff; }
         button.btn-submit { width: 100%; padding: 14px; background-color: #ffd700; color: #111; border: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; }
         button.btn-submit:hover { background-color: #e6c200; transform: translateY(-2px); }
 
@@ -59,13 +59,12 @@
             <p>Admin Portal IIP</p>
         </div>
         <ul class="nav-links">
-            <!-- Penanda menu aktif otomatis berdasarkan URL -->
             <li><a href="/admin" class="{{ Request::is('admin') ? 'active' : '' }}">❖ Kebanggaan IIP</a></li>
             <li><a href="/admin/berita" class="{{ Request::is('admin/berita') ? 'active' : '' }}">📝 Berita Terkini</a></li>
             <li><a href="/admin/persebaran" class="{{ Request::is('admin/persebaran') ? 'active' : '' }}">📍 Persebaran Alumni</a></li>
             <li><a href="/admin/toolkit" class="{{ Request::is('admin/toolkit') ? 'active' : '' }}">🛠️ Student Toolkit</a></li>
             <li><a href="/admin/informasi" class="{{ Request::is('admin/informasi*') ? 'active' : '' }}">📢 Informasi Seputar IIP</a></li>
-            <li><a href="#">⚙️ Pengaturan Web</a></li>
+            <li><a href="/admin/kalkulator-ddc" class="{{ Request::is('admin/kalkulator-ddc') ? 'active' : '' }}">🧮 Kalkulator DDC</a></li>
         </ul>
         <div class="back-to-web">
             <a href="/home">← Kembali ke Website</a>
