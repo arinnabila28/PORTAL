@@ -38,6 +38,16 @@ class HomeController extends Controller
         return view('berita-semua', compact('berita'));
     }
 
+    // Fungsi untuk menampilkan detail baca berita
+    public function show($id)
+    {
+        $berita = Berita::findOrFail($id);
+        
+        // Catatan: Jika nama file view untuk detail beritamu bukan 'berita-detail', 
+        // silakan ubah kata 'berita-detail' di bawah ini menyesuaikan nama file aslimu.
+        return view('berita-detail', compact('berita'));
+    }
+    
     // Fungsi Pencarian Global Keseluruhan Website
     public function search(Request $request)
     {
